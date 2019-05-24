@@ -1,0 +1,1 @@
+{"rowCount":7,"stmt":"SELECT Name FROM Products WHERE Price \u003c\u003d 200;\n","currentFile":"3","columns":["NAME"],"limits":false}

@@ -1,0 +1,1 @@
+{"rowCount":1,"stmt":"SELECT genre, COUNT(DISTINCT albumid) albums\nFROM\n  artist2album\n  NATURAL JOIN cds\n  NATURAL JOIN genres g\nGROUP BY g.genreid\nHAVING COUNT(DISTINCT albumid) \u003e\u003d ALL (\n  SELECT COUNT(DISTINCT albumid) albums\n  FROM\n    artist2album\n    NATURAL JOIN cds\n  GROUP BY genreid)","currentFile":"1g","columns":["GENRE","ALBUMS"],"limits":false}

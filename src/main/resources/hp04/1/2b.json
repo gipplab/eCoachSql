@@ -1,0 +1,1 @@
+{"rowCount":131,"stmt":"SELECT genre\nFROM genres\nWHERE genreid IN (\n  SELECT genreid\n  FROM cds\n  GROUP BY genreid\n  HAVING MIN(ayear) \u003e\u003d 2005\n);","currentFile":"2b","columns":["GENRE"],"limits":false}

@@ -1,0 +1,1 @@
+{"rowCount":3417,"stmt":"-- List distinct set names of sets with more than 100 parts (Output: name).\nSELECT DISTINCT name FROM sets WHERE num_parts \u003e 100;","currentFile":"1e","columns":["NAME"],"limits":false}

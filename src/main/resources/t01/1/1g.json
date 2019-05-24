@@ -1,0 +1,1 @@
+{"rowCount":11,"stmt":"-- List distinct names of all part categories where the name starts with a \u0027B\u0027 (regardless of case) (Output: name).\nSELECT DISTINCT name FROM part_categories WHERE name ILIKE \u0027b%\u0027;","currentFile":"1g","columns":["NAME"],"limits":false}

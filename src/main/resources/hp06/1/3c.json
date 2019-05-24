@@ -1,0 +1,1 @@
+{"rowCount":1,"stmt":"SELECT e.ssn, e.fname, e.lname\nFROM Employee e\nWHERE salary \u003e 40000\n  AND e.ssn NOT IN (\n    SELECT mgr_ssn FROM Department\n    WHERE mgr_ssn IS NOT NULL\n    UNION\n    SELECT f.super_ssn\n    FROM Employee f\n    WHERE  f.super_ssn IS NOT NULL\n  );","currentFile":"3c","columns":["SSN","FNAME","LNAME"],"limits":false}

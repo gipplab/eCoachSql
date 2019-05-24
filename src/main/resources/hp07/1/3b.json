@@ -1,0 +1,1 @@
+{"rowCount":7,"stmt":"SELECT person, COUNT(DISTINCT bar) AS count\nFROM frequents\nGROUP BY person;","currentFile":"3b","columns":["PERSON","COUNT"],"limits":false}

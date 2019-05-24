@@ -1,0 +1,1 @@
+{"rowCount":1,"stmt":"SELECT COUNT(*)\nFROM (\n       SELECT songid, COUNT(DISTINCT cdid) AS cds\n       FROM cdtracks\n       GROUP BY songid\n       HAVING COUNT(DISTINCT cdid) \u003e\u003d 3\n     ) S","currentFile":"1f","columns":["COUNT"],"limits":false}

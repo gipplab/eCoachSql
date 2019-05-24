@@ -1,0 +1,1 @@
+{"rowCount":2,"stmt":"SELECT p.pname, p.pnumber\nFROM Project p\nWHERE p.plocation NOT IN (\n  SELECT d.dlocation\n  FROM Dept_locations d\n  WHERE d.dnumber \u003d p.dnum\n);","currentFile":"1g","columns":["PNAME","PNUMBER"],"limits":false}

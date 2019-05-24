@@ -1,0 +1,1 @@
+{"rowCount":3741,"stmt":"-- List distinct set names and years from the last millennium (Output: name, year).\nSELECT DISTINCT name, year FROM sets WHERE year \u003c\u003d 2000;","currentFile":"1f","columns":["NAME","YEAR"],"limits":false}

@@ -1,0 +1,1 @@
+{"rowCount":28,"stmt":"-- List names of all transparent colors (\u0027t\u0027 marks transparent, \u0027f\u0027 non-transparent colors) (Output: name)\nSELECT name FROM lego.colors WHERE is_trans \u003d \u0027t\u0027;","currentFile":"1c","columns":["NAME"],"limits":false}

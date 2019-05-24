@@ -1,0 +1,1 @@
+{"rowCount":1,"stmt":"SELECT MAX(ayear), AVG(ayear)\nFROM cds\nWHERE ayear BETWEEN 1900 AND 2012;","currentFile":"1a","columns":["MAX","AVG"],"limits":false}

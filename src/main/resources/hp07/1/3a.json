@@ -1,0 +1,1 @@
+{"rowCount":1,"stmt":"-- Using Common Table Expressions (CTEs)\nWITH freq_counts AS\n  (\n    SELECT person, COUNT(*) as count FROM frequents\n    GROUP BY person\n  )\nSELECT person, count\nFROM freq_counts\nWHERE count \u003e\u003d ALL (SELECT count FROM freq_counts);\n","currentFile":"3a","columns":["PERSON","COUNT"],"limits":false}

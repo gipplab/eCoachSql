@@ -1,0 +1,1 @@
+{"rowCount":1,"stmt":"SELECT DISTINCT d.dname\nFROM\n  Department d\n    JOIN Employee e ON (d.dnumber \u003d e.dno)\nWHERE e.salary \u003e 45000\n  AND e.sex\u003d\u0027F\u0027;","currentFile":"3f","columns":["DNAME"],"limits":false}

@@ -1,0 +1,1 @@
+{"rowCount":10,"stmt":"SELECT Name, Price FROM Products;\n","currentFile":"2","columns":["NAME","PRICE"],"limits":false}

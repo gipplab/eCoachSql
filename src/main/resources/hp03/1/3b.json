@@ -1,0 +1,1 @@
+{"rowCount":5624,"stmt":"SELECT DISTINCT artist\nFROM artists\n  NATURAL JOIN artist2album\n  NATURAL JOIN cds\nWHERE ayear \u003d 2000;","currentFile":"3b","columns":["ARTIST"]}

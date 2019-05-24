@@ -1,0 +1,1 @@
+{"rowCount":9,"stmt":"SELECT rgb, array_agg(name) as names FROM colors GROUP BY (rgb) HAVING count(*) \u003e 1","currentFile":"2d","columns":["RGB","NAMES"],"limits":false}

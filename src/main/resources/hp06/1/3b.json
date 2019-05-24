@@ -1,0 +1,1 @@
+{"rowCount":1,"stmt":"SELECT dependent_name, bdate\nFROM Dependent\nWHERE bdate \u003c \u00271980-12-31\u0027\n  AND sex \u003d \u0027M\u0027;","currentFile":"3b","columns":["DEPENDENT_NAME","BDATE"],"limits":false}

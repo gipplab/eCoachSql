@@ -1,0 +1,1 @@
+{"rowCount":6,"stmt":"SELECT artist, COUNT(DISTINCT albumid) AS albums\nFROM\n  artists\n  NATURAL JOIN artist2album\nWHERE artist LIKE \u0027mad%\u0027\nGROUP BY artist\nHAVING COUNT(DISTINCT albumid) \u003e 1\nORDER BY artist","currentFile":"1e","columns":["ARTIST","ALBUMS"],"limits":false}

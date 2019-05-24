@@ -1,0 +1,1 @@
+{"rowCount":135,"stmt":"-- Make a lexicographically sorted list of distinct color names (Output: name)\nSELECT DISTINCT name FROM lego.colors ORDER BY name;","currentFile":"1a","columns":["NAME"],"limits":false}

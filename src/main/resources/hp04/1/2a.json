@@ -1,0 +1,1 @@
+{"rowCount":35,"stmt":"SELECT DISTINCT artist\nFROM artists\n  NATURAL JOIN (\n                 SELECT artistid\n                 FROM\n                   albums\n                   NATURAL JOIN artist2album\n                 WHERE album LIKE \u0027%drop%\u0027\n               ) D\nORDER BY artist;","currentFile":"2a","columns":["ARTIST"],"limits":false}

@@ -1,0 +1,1 @@
+{"rowCount":6,"stmt":"SELECT e.ssn, e.fname, e.lname\nFROM Employee e\nWHERE e.ssn IN (\n  SELECT essn\n  FROM Works_on\n  GROUP BY essn\n  HAVING COUNT(DISTINCT pno) \u003e 1\n);","currentFile":"1h","columns":["SSN","FNAME","LNAME"],"limits":false}

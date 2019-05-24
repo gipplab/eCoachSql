@@ -1,0 +1,1 @@
+{"rowCount":1,"stmt":"-- Count the number of spare inventory parts, do not forget the quantity attribute! (Output: sum)\nSELECT SUM(quantity)\nFROM inventory_parts\nWHERE is_spare \u003d \u0027t\u0027;\n","currentFile":"2g","columns":["SUM"],"limits":false}

@@ -1,0 +1,1 @@
+{"rowCount":1,"stmt":"SELECT mgr_ssn\nFROM Department\nWHERE mgr_ssn NOT IN (SELECT essn FROM Dependent);","currentFile":"3d","columns":["MGR_SSN"],"limits":false}

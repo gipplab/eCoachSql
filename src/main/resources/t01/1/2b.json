@@ -1,0 +1,1 @@
+{"rowCount":1,"stmt":"-- Count the number of color names (Output: count).\nSELECT COUNT(DISTINCT name) FROM colors;","currentFile":"2b","columns":["COUNT"],"limits":false}

@@ -1,0 +1,1 @@
+SELECT rgb, array_agg(name) as names FROM colors GROUP BY (rgb) HAVING count(*) > 1

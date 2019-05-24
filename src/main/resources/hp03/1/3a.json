@@ -1,0 +1,1 @@
+{"rowCount":9,"stmt":"SELECT album\nFROM artists\n  NATURAL JOIN artist2album\n  NATURAL JOIN albums\nWHERE artist \u003d \u0027radiohead\u0027;","currentFile":"3a","columns":["ALBUM"]}

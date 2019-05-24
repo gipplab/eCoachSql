@@ -1,0 +1,1 @@
+{"rowCount":8,"stmt":"SELECT part_num, AVG(price) AS avg_price, AVG(quoted_price) AS avg_quoted_price\nFROM orders NATURAL JOIN order_line NATURAL JOIN part\nGROUP BY part_num;","currentFile":"3c","columns":["PART_NUM","AVG_PRICE","AVG_QUOTED_PRICE"],"limits":false}

@@ -1,0 +1,1 @@
+{"rowCount":1,"stmt":"SELECT e.fname, e.minit, e.lname\nFROM\n  Employee e JOIN Department d ON e.dno \u003d d.dnumber\nWHERE\n  e.ssn IN (SELECT super_ssn FROM Employee)\n  AND d.dname \u003d \u0027Administration\u0027;","currentFile":"1a","columns":["FNAME","MINIT","LNAME"],"limits":false}

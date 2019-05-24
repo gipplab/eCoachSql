@@ -1,0 +1,1 @@
+{"rowCount":98,"stmt":"SELECT c.ayear, COUNT(DISTINCT a.albumid)\nFROM\n  albums a\n  NATURAL JOIN artist2album\n  NATURAL JOIN cds c\nWHERE ayear BETWEEN 1900 AND 1999\nGROUP BY c.ayear","currentFile":"1d","columns":["AYEAR","COUNT"],"limits":false}

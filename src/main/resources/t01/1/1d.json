@@ -1,0 +1,1 @@
+{"rowCount":399,"stmt":"-- List distinct theme names in descending order (Output: name).\nSELECT DISTINCT name FROM themes ORDER BY name DESC;","currentFile":"1d","columns":["NAME"],"limits":false}

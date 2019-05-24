@@ -1,0 +1,1 @@
+{"rowCount":1,"stmt":"-- Count the number of years of the sets (Output: count).\nSELECT COUNT(DISTINCT year) FROM sets;","currentFile":"2e","columns":["COUNT"],"limits":false}

@@ -1,0 +1,1 @@
+{"rowCount":1,"stmt":"SELECT COUNT(DISTINCT ayear)\nFROM cds\nWHERE ayear \u003e 1500;","currentFile":"1b","columns":["COUNT"],"limits":false}

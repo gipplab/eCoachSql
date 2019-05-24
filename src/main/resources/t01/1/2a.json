@@ -1,0 +1,1 @@
+{"rowCount":1,"stmt":"-- Count the number of part category names (Output: count).\nSELECT COUNT(DISTINCT name) FROM part_categories;","currentFile":"2a","columns":["COUNT"],"limits":false}

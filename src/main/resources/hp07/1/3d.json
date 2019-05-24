@@ -1,0 +1,1 @@
+{"rowCount":1,"stmt":"SELECT * FROM serves\nWHERE beverage \u003d \u0027Schimmele\u0027\n  AND price \u003c\u003d ALL\n    (\n      SELECT price\n      FROM serves\n      WHERE beverage \u003d \u0027Schimmele\u0027\n    );","currentFile":"3d","columns":["BAR","BEVERAGE","PRICE"],"limits":false}

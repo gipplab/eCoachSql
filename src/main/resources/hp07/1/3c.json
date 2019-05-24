@@ -1,0 +1,1 @@
+{"rowCount":2,"stmt":"SELECT DISTINCT f1.person as person\nFROM frequents f1 JOIN frequents f2\n    ON (f1.person \u003d f2.person AND f1.bar !\u003d f2.bar);","currentFile":"3c","columns":["PERSON"],"limits":false}

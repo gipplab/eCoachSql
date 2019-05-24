@@ -1,0 +1,1 @@
+{"rowCount":2,"stmt":"SELECT DISTINCT d.dname, d.dnumber\nFROM\n  Project p\n    JOIN Department d ON p.dnum \u003d d.dnumber\n    JOIN Dept_locations l ON d.dnumber \u003d l.dnumber\nWHERE p.plocation \u003d l.dlocation;","currentFile":"1c","columns":["DNAME","DNUMBER"],"limits":false}

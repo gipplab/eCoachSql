@@ -1,0 +1,1 @@
+{"rowCount":2,"stmt":"SELECT e1.fname, e2.fname, e2.lname\nFROM\n    employee e1 JOIN employee e2 ON e1.lname \u003d e2.lname\nWHERE e1.fname !\u003d e2.fname;","currentFile":"1b","columns":["FNAME","FNAME","LNAME"],"limits":false}

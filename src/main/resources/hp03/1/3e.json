@@ -1,0 +1,1 @@
+{"rowCount":9,"stmt":"SELECT DISTINCT\n  artist,\n  song,\n  album\nFROM cdtracks\n  NATURAL JOIN songs\n  NATURAL JOIN cds\n  NATURAL JOIN artist2album\n  NATURAL JOIN albums\n  NATURAL JOIN artists\nWHERE track \u003d 99;","currentFile":"3e","columns":["ARTIST","SONG","ALBUM"]}

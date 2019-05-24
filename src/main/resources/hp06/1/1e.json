@@ -1,0 +1,1 @@
+{"rowCount":2,"stmt":"SELECT d.dependent_name\nFROM\n  Dependent d\n    JOIN Employee e ON e.ssn \u003d d.essn\nWHERE d.sex \u003d \u0027M\u0027\n  AND d.bdate \u003c e.bdate;","currentFile":"1e","columns":["DEPENDENT_NAME"],"limits":false}

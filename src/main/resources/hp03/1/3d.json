@@ -1,0 +1,1 @@
+{"rowCount":1,"stmt":"SELECT\n  artist,\n  album\nFROM songs\n  NATURAL JOIN cdtracks\n  NATURAL JOIN cds\n  NATURAL JOIN artist2album\n  NATURAL JOIN artists\n  NATURAL JOIN genres\n  NATURAL JOIN albums\nWHERE song \u003d \u0027rocky road to dublin\u0027 AND ayear \u003d 2003 AND genre \u003d \u0027folk\u0027;","currentFile":"3d","columns":["ARTIST","ALBUM"]}

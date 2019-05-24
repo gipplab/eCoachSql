@@ -1,0 +1,1 @@
+{"rowCount":2,"stmt":"SELECT p.pnumber, p.pname\nFROM\n  Project p\n  JOIN Department d ON p.dnum \u003d d.dnumber\nWHERE NOT EXISTS (\n  SELECT l.dlocation\n  FROM Dept_locations  l\n  WHERE l.dnumber \u003d d.dnumber\n    AND l.dlocation \u003c\u003e p.plocation\n);","currentFile":"1d","columns":["PNUMBER","PNAME"],"limits":false}

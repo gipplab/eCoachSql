@@ -1,0 +1,3 @@
+SELECT COUNT(DISTINCT ayear)
+FROM cds
+WHERE ayear > 1500;

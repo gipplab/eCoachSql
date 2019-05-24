@@ -1,0 +1,1 @@
+{"rowCount":10,"stmt":"SELECT genre, COUNT(DISTINCT cdid) AS cds\nFROM\n  cds\n  NATURAL JOIN genres g\nGROUP BY g.genreid, genre\nHAVING COUNT(DISTINCT cdid) \u003e\u003d 1000\nORDER BY cds DESC","currentFile":"1h","columns":["GENRE","CDS"],"limits":false}

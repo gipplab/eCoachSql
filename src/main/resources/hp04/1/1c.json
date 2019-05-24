@@ -1,0 +1,1 @@
+{"rowCount":1,"stmt":"SELECT MAX(num_cds), AVG(num_cds)\nFROM\n(\nSELECT genreid, COUNT(*) AS num_cds\nFROM cds\nGROUP BY genreid\n) G","currentFile":"1c","columns":["MAX","AVG"],"limits":false}

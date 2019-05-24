@@ -1,0 +1,1 @@
+{"rowCount":1,"stmt":"SELECT e.ssn, e.fname, e.lname\nFROM Employee e\nWHERE e.super_ssn IS NULL\n  AND e.ssn NOT IN (\n    SELECT essn\n    FROM Works_on\n  );","currentFile":"1f","columns":["SSN","FNAME","LNAME"],"limits":false}

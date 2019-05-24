@@ -1,0 +1,1 @@
+{"rowCount":20,"stmt":"SELECT\n  artist,\n  COUNT(DISTINCT genreid) AS num_genres\nFROM\n  cds\n  NATURAL JOIN artist2album\n  NATURAL JOIN artists\nGROUP BY artistid, artist\nORDER BY num_genres DESC\nLIMIT 20;","currentFile":"1i","columns":["ARTIST","NUM_GENRES"],"limits":true}
