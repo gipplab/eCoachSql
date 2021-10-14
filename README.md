@@ -3,4 +3,4 @@
 Evaluation framework for students SQL code.
 
 
-[![Build Status](https://travis-ci.com/ag-gipp/eCoachSql.svg?branch=master)](https://travis-ci.com/ag-gipp/eCoachSql)
+[![Build Status](https://github.com/ag-gipp/eCoachSql/actions/workflows/mvn-test.yml/badge.svg)
