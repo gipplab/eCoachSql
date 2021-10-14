@@ -118,7 +118,7 @@ public class QueryComp {
     }
 
     public static Connection getConnection(String schema) throws SQLException {
-        String url = "jdbc:mariadb://localhost:3308/exampleDatabase?currentSchema=" + schema;
+        String url = "jdbc:postgresql://localhost:54321/exampleDatabase?currentSchema=" + schema;
         Properties props = new Properties();
         props.setProperty("user", "exampleUser");
         props.setProperty("password", "examplePassword");

@@ -19,7 +19,7 @@ public class GenericTests {
 
     @Test
     public void dbsAccessTest() throws Exception {
-        String url = "jdbc:mariadb://localhost:3308/exampleDatabase";
+        String url = "jdbc:postgresql://localhost:54321/exampleDatabase";
         Properties props = new Properties();
         props.setProperty("user", "exampleUser");
         props.setProperty("password", "examplePassword");
@@ -29,7 +29,7 @@ public class GenericTests {
 
         if (rs.next()) {
             String version = rs.getString(1);
-            assertThat("Check that it's a MariadDB database", version, containsString("maria"));
+            assertThat("Check that it's a MariadDB database", version, containsString("PostgreSQL"));
             System.out.println();
         } else {
             fail("SQL command failed");

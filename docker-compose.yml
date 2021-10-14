@@ -2,13 +2,12 @@ version: '3.4'
 services:
   database:
     container_name: exampleDb
-    image: mariadb
+    image: postgres
     environment:
-      MYSQL_ROOT_PASSWORD: exampleRootPassword
-      MYSQL_DATABASE: exampleDatabase
-      MYSQL_USER: exampleUser
-      MYSQL_PASSWORD: examplePassword
+      POSTGRES_DB: exampleDatabase
+      POSTGRES_USER: exampleUser
+      POSTGRES_PASSWORD: examplePassword
     volumes:
       - ./support:/docker-entrypoint-initdb.d
     ports:
-      - 3308:3306
+      - 54321:5432
