@@ -30,7 +30,7 @@ public class IdentityTest extends TestCase {
     }
 
     public void testMainTooFew() {
-       assertThrows(AssertionError.class, () -> {
+       assertThrows(RuntimeException.class, () -> {
                     String[] args = {};
                     Identity.main(args);
                 }

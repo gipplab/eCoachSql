@@ -5,10 +5,14 @@ import com.formulasearchengine.sql.check.dbs.BaseChecker;
 import java.util.TreeMap;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class Identity extends BaseChecker {
     public static void main(String[] args) {
+        if (args.length!=6){
+            throw new RuntimeException("6 arguments are mandatory");
+        }
         new Identity().go(args);
     }
     @Override
