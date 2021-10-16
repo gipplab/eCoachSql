@@ -8,7 +8,6 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class Identity extends BaseChecker {
-
     public static void main(String[] args) {
         new Identity().go(args);
     }

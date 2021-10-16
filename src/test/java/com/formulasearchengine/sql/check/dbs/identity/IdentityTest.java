@@ -1,14 +1,13 @@
 package com.formulasearchengine.sql.check.dbs.identity;
 
 import junit.framework.TestCase;
-import org.junit.Before;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertThrows;
 
 public class IdentityTest extends TestCase {
 
@@ -28,6 +27,14 @@ public class IdentityTest extends TestCase {
                 "42"                // 5: str(env.solution().id)]
         };
         Identity.main(args);
+    }
+
+    public void testMainTooFew() {
+       assertThrows(AssertionError.class, () -> {
+                    String[] args = {};
+                    Identity.main(args);
+                }
+        );
     }
 
     private Path getTestFolder(String name) {
