@@ -148,11 +148,7 @@ public abstract class BaseChecker {
     private void redirectStdOut() {
         orgStream = System.out;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        try {
-            myPrintStream = new PrintStream(baos, true, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            myPrintStream = new PrintStream(baos);
-        }
+        myPrintStream = new PrintStream(baos, true, StandardCharsets.UTF_8);
         System.setOut(myPrintStream);
     }
 }

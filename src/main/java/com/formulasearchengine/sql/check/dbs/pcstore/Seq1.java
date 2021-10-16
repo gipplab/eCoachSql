@@ -33,7 +33,7 @@ public class Seq1 extends SqlChecker {
         return s.hasNext() ? s.next() : "";
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         String dir = Praktomat.getDir(args);
         final Path path = Paths.get(dir);
         try {

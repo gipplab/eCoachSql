@@ -5,10 +5,6 @@ import com.formulasearchengine.sql.check.dbs.pojos.Query;
 import org.apache.commons.dbutils.BasicRowProcessor;
 import org.apache.commons.dbutils.RowProcessor;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -22,7 +18,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.SortedMap;
-import java.util.stream.Collectors;
 
 import static com.facebook.presto.sql.SqlFormatter.formatSql;
 import static com.formulasearchengine.sql.check.dbs.ReferenceQuery.getQuerySpecification;
@@ -70,12 +65,6 @@ public class SqlChecker extends BaseChecker{
             }
         }
         return true;
-    }
-
-    protected void checkOrder(int i, String empno) throws SQLException {
-        Map<String, Integer> map = new HashMap<>(1);
-        map.put(empno, i);
-        checkOrder(map);
     }
 
     public boolean checkSchema() {
@@ -147,7 +136,7 @@ public class SqlChecker extends BaseChecker{
         final ResultSet resultSet = statement.getResultSet();
         resultSet.next();
         RowProcessor rp = new BasicRowProcessor();
-        Map m = rp.toMap(resultSet);
+        Map<String, Object> m = rp.toMap(resultSet);
         return m.toString();
     }
 
@@ -278,7 +267,7 @@ public class SqlChecker extends BaseChecker{
     }
 
     public boolean setCurrentFile(String currentFile) {
-        if (refs.keySet().contains(currentFile)) {
+        if (refs.containsKey(currentFile)) {
             this.currentFile = currentFile;
             return true;
         } else {

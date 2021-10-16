@@ -23,7 +23,7 @@ public class Solution {
      *
      * @param args
      */
-    public Solution(String args[]) {
+    public Solution(String[] args) {
 
         assert args.length == 6;
 

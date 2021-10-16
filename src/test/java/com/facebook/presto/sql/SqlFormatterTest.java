@@ -15,8 +15,8 @@ import static junit.framework.TestCase.assertEquals;
  * Created by Moritz on 22.05.2017.
  */
 public class SqlFormatterTest {
-    private static String TESTQUERY = "SELECT a,b from T limit 10";
-    private static String TESTQUERYII = "SELECT a, (SELECT a from T limit 1) b from T limit 10";
+    private static final String TESTQUERY = "SELECT a,b from T limit 10";
+    private static final String TESTQUERYII = "SELECT a, (SELECT a from T limit 1) b from T limit 10";
 
     @Test
     public void basicSql() throws Exception {

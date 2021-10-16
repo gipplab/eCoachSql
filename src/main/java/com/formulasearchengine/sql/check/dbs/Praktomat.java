@@ -13,7 +13,7 @@ public class Praktomat {
         }
     }
 
-    public static String getDir(String args[]) {
+    public static String getDir(String[] args) {
         String dir;
         if (args.length > 0) {
             dir = args[0];
