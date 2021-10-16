@@ -28,15 +28,10 @@ import static com.facebook.presto.sql.SqlFormatter.formatSql;
 import static com.formulasearchengine.sql.check.dbs.ReferenceQuery.getQuerySpecification;
 import static com.formulasearchengine.sql.check.dbs.ReferenceQuery.removeLimits;
 
-public class SqlChecker {
-    private static final boolean SHOW_DEBUG = true ;
+public class SqlChecker extends BaseChecker{
     protected SortedMap<String, Query> refs;
 
-    protected Path testFolder;
     protected Connection con;
-    protected int points = 0;
-    protected String currentFile;
-    private String currentStatement;
     private ResultSet rs;
     private ArrayList<String> colNames;
     private long lastRuntime = 0;
@@ -244,27 +239,7 @@ public class SqlChecker {
     }
 
     public boolean loadFileContents(String suffix) {
-        final String searchFile = currentFile + suffix + ".sql";
-        try {
-            currentStatement = new String(Files.readAllBytes(Paths.get(
-                    testFolder.toString(), searchFile)));
-            return true;
-        } catch (IOException e) {
-            try {
-                final List<Path> fileList = Files.walk(testFolder)
-                        .filter(Files::isRegularFile)
-                        .collect(Collectors.toList());
-                System.out.println("- File '" + searchFile + "' not found. Your upload contains the following files:");
-                for (Path path : fileList) {
-                    System.out.println("\t" + path.getFileName());
-                }
-                System.out.println("\tNote that some OS treat filenames as cases sensitive.");
-            } catch (IOException e1) {
-                printException(e1);
-            }
-            printException(e);
-        }
-        return false;
+        return loadFileContents(suffix,".sql");
     }
 
     protected void printException(Exception e) {

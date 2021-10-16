@@ -5,6 +5,7 @@ import com.formulasearchengine.sql.check.dbs.pojos.Solution;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,13 +19,15 @@ import java.lang.Math;
 
 
 public abstract class BaseChecker {
-    private static final boolean SHOW_DEBUG = true;
+    static final boolean SHOW_DEBUG = true;
     private PrintStream orgStream;
+    private PrintStream myPrintStream;
     protected Solution solution;
     protected Path testFolder;
     protected int points = 0;
     protected SortedMap<String, Function<BaseChecker, Boolean>> refs;
     protected String currentFile;
+    String currentStatement;
     private final StringBuilder output = new StringBuilder();
 
     protected void feedback(String... log) {
@@ -57,13 +60,13 @@ public abstract class BaseChecker {
     }
 
     public boolean loadFileContents() {
-        return loadFileContents("");
+        return loadFileContents("", ".sql");
     }
 
-    public boolean loadFileContents(String suffix) {
-        final String searchFile = currentFile + suffix + ".sql";
+    public boolean loadFileContents(String suffix, String extension) {
+        final String searchFile = currentFile + suffix + extension;
         try {
-            String currentStatement = new String(Files.readAllBytes(Paths.get(
+            currentStatement = new String(Files.readAllBytes(Paths.get(
                     testFolder.toString(), searchFile)));
             return true;
         } catch (IOException e) {
@@ -145,7 +148,11 @@ public abstract class BaseChecker {
     private void redirectStdOut() {
         orgStream = System.out;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        PrintStream myPrintStream = new PrintStream(baos, true, StandardCharsets.UTF_8);
+        try {
+            myPrintStream = new PrintStream(baos, true, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            myPrintStream = new PrintStream(baos);
+        }
         System.setOut(myPrintStream);
     }
 }
