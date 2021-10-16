@@ -28,7 +28,7 @@ import static com.facebook.presto.sql.SqlFormatter.formatSql;
 import static com.formulasearchengine.sql.check.dbs.ReferenceQuery.getQuerySpecification;
 import static com.formulasearchengine.sql.check.dbs.ReferenceQuery.removeLimits;
 
-public class BaseChecker {
+public class SqlChecker {
     private static final boolean SHOW_DEBUG = true ;
     protected SortedMap<String, Query> refs;
 

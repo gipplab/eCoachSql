@@ -1,6 +1,6 @@
 package com.formulasearchengine.sql.check.dbs.pcstore;
 
-import com.formulasearchengine.sql.check.dbs.BaseChecker;
+import com.formulasearchengine.sql.check.dbs.SqlChecker;
 import com.formulasearchengine.sql.check.dbs.Praktomat;
 import com.formulasearchengine.sql.check.dbs.QueryComp;
 import com.formulasearchengine.sql.check.dbs.pojos.Query;
@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.TreeMap;
 
-public class Seq1 extends BaseChecker {
+public class Seq1 extends SqlChecker {
 
 
     public Seq1(Path folder) throws SQLException {
@@ -37,7 +37,7 @@ public class Seq1 extends BaseChecker {
         String dir = Praktomat.getDir(args);
         final Path path = Paths.get(dir);
         try {
-            final BaseChecker checker = new Seq1(path);
+            final SqlChecker checker = new Seq1(path);
             checker.run();
         } catch (Exception e) {
             Praktomat.handleException(e);
