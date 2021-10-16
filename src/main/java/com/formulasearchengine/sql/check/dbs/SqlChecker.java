@@ -108,15 +108,15 @@ public class SqlChecker extends BaseChecker{
             if (refs.get(currentFile).limits) {
                 final QuerySpecification querySpecification = getQuerySpecification(referenceQuery);
                 final String noLimitSql = formatSql(removeLimits(querySpecification), Optional.empty());
-                compareQueries = QueryComp.compareLimitedQueries(getStatement(), currentStatement, noLimitSql);
+                compareQueries = QueryComp.compareLimitedQueries(getStatement(), currentFileContent, noLimitSql);
             } else {
-                compareQueries = QueryComp.compareQueries(order, getStatement(), currentStatement, referenceQuery);
+                compareQueries = QueryComp.compareQueries(order, getStatement(), currentFileContent, referenceQuery);
             }
             lastRuntime = System.nanoTime() - l;
             if (compareQueries != 0) {
                 System.out.println("- Student solution and reference solution differ!");
                 if (SHOW_DEBUG){
-                    System.out.println("First row of student result set " + getFirstRow(currentStatement));
+                    System.out.println("First row of student result set " + getFirstRow(currentFileContent));
                     System.out.println("First row of reference result set " + getFirstRow(referenceQuery));
                 }
                 return false;
@@ -165,7 +165,7 @@ public class SqlChecker extends BaseChecker{
     }
 
     public String getCurrentStatement() {
-        return currentStatement;
+        return currentFileContent;
     }
 
     public String getFormattedRuntime() {
@@ -258,7 +258,7 @@ public class SqlChecker extends BaseChecker{
     public boolean runQuery() {
         try {
             Statement st = getStatement();
-            rs = st.executeQuery(currentStatement);
+            rs = st.executeQuery(currentFileContent);
         } catch (SQLException e) {
             printException(e);
             return false;

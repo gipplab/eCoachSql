@@ -27,7 +27,7 @@ public abstract class BaseChecker {
     protected int points = 0;
     protected SortedMap<String, Function<BaseChecker, Boolean>> refs;
     protected String currentFile;
-    String currentStatement;
+    String currentFileContent;
     private final StringBuilder output = new StringBuilder();
 
     protected void feedback(String... log) {
@@ -66,7 +66,7 @@ public abstract class BaseChecker {
     public boolean loadFileContents(String suffix, String extension) {
         final String searchFile = currentFile + suffix + extension;
         try {
-            currentStatement = new String(Files.readAllBytes(Paths.get(
+            currentFileContent = new String(Files.readAllBytes(Paths.get(
                     testFolder.toString(), searchFile)));
             return true;
         } catch (IOException e) {
@@ -148,7 +148,11 @@ public abstract class BaseChecker {
     private void redirectStdOut() {
         orgStream = System.out;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        myPrintStream = new PrintStream(baos, true, StandardCharsets.UTF_8);
+        try {
+            myPrintStream = new PrintStream(baos, true, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            myPrintStream = new PrintStream(baos);
+        }
         System.setOut(myPrintStream);
     }
 }
