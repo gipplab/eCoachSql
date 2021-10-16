@@ -38,5 +38,28 @@ public class Identity extends BaseChecker {
         }
         points++;
         feedback("+");
+        feedback("check if 1b.txt file exists");
+        try {
+            loadFileContents("b",".txt");
+        } catch (Exception e) {
+            feedback("Can not open your 1b.txt file " + e.getLocalizedMessage());
+            return;
+        }
+        points++;
+        feedback("+");
+        feedback("check that file contains your student id");
+        try {
+            assertThat( currentFileContent, containsString(solution.userName));
+        } catch (AssertionError | Exception e) {
+            feedback("1b.txt does not contain your student id:" + e.getLocalizedMessage());
+            return;
+        }
+        points++;
+        feedback("+");
+    }
+
+    @Override
+    public double getTotalPoints() {
+        return 4;
     }
 }
