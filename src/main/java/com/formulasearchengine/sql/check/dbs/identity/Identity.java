@@ -11,7 +11,6 @@ public class Identity extends BaseChecker {
 
     public static void main(String[] args) {
         new Identity().go(args);
-        System.exit(0);
     }
     @Override
     public void run() {
