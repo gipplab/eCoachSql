@@ -27,7 +27,7 @@ public abstract class BaseChecker {
     protected int points = 0;
     protected SortedMap<String, Function<BaseChecker, Boolean>> refs;
     protected String currentFile;
-    String currentFileContent;
+    protected String currentFileContent;
     private final StringBuilder output = new StringBuilder();
 
     protected void feedback(String... log) {
