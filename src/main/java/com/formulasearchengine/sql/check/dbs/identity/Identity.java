@@ -5,16 +5,16 @@ import com.formulasearchengine.sql.check.dbs.BaseChecker;
 import java.util.TreeMap;
 
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class Identity extends BaseChecker {
     public static void main(String[] args) {
-        if (args.length!=6){
+        if (args.length != 6) {
             throw new RuntimeException("6 arguments are mandatory");
         }
         new Identity().go(args);
     }
+
     @Override
     public void run() {
         refs = new TreeMap<>();
@@ -22,12 +22,8 @@ public class Identity extends BaseChecker {
         testFolder = solution.location.toPath();
         feedback("\n\n======= Test Details ======");
         feedback("check if 1a.txt file exists");
-        try {
-            loadFileContents("a",".txt");
-        } catch (Exception e) {
-            feedback("Can not open your 1a.txt file " + e.getLocalizedMessage());
+        if (!loadFileContents("a", ".txt"))
             return;
-        }
         points++;
         feedback("+");
         feedback("check that file contains your name");
@@ -41,17 +37,13 @@ public class Identity extends BaseChecker {
         points++;
         feedback("+");
         feedback("check if 1b.txt file exists");
-        try {
-            loadFileContents("b",".txt");
-        } catch (Exception e) {
-            feedback("Can not open your 1b.txt file " + e.getLocalizedMessage());
+        if (!loadFileContents("b", ".txt"))
             return;
-        }
         points++;
         feedback("+");
         feedback("check that file contains your student id");
         try {
-            assertThat( currentFileContent, containsString(solution.userName));
+            assertThat(currentFileContent, containsString(solution.userName));
         } catch (AssertionError | Exception e) {
             feedback("1b.txt does not contain your student id:" + e.getLocalizedMessage());
             return;
