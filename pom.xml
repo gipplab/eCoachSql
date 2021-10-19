@@ -72,11 +72,11 @@
     </properties>
     <distributionManagement>
         <snapshotRepository>
-            <id>ossrh</id>
+            <id>maven</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <repository>
-            <id>ossrh</id>
+            <id>maven</id>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
@@ -93,9 +93,9 @@
             </properties>
             <distributionManagement>
                 <snapshotRepository>
-                    <id>ossrh</id>
+                    <id>maven</id>
                     <name>Central Repository OSSRH</name>
-                    <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
                 </snapshotRepository>
             </distributionManagement>
             <build>
@@ -106,8 +106,8 @@
                         <version>1.6.3</version>
                         <extensions>true</extensions>
                         <configuration>
-                            <serverId>ossrh</serverId>
-                            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                            <serverId>maven</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                             <!--  Change to true once we're good! -->
                             <autoReleaseAfterClose>false</autoReleaseAfterClose>
                         </configuration>
@@ -130,6 +130,7 @@
                                 <arg>--pinentry-mode</arg>
                                 <arg>loopback</arg>
                             </gpgArguments>
+                            <keyname>9AACFA6E84DA40F69BA2CF2F373354382888AB24</keyname>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -152,7 +153,7 @@
                 <version>1.6.3</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <serverId>ossrh</serverId>
+                    <serverId>maven</serverId>
                     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
