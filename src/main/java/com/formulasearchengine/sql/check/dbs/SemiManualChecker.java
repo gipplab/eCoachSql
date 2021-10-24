@@ -1,6 +1,11 @@
 package com.formulasearchengine.sql.check.dbs;
 
+import com.opencsv.bean.CsvToBeanBuilder;
+
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -40,5 +45,35 @@ public abstract class SemiManualChecker extends BaseChecker {
         super.writeOutput();
         feedback("You might obtain " + maybePoints + " of "+ totalMaybePoints + " additional points that will be granted by humans.");
 
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public void compareWithResource(InputStream refStream , Double maxPoints, Class clazz ){
+        try {
+            feedback("check that the file is a valid csv file");
+            List list = new CsvToBeanBuilder(new StringReader(currentFileContent))
+                    .withIgnoreLeadingWhiteSpace(true)
+                    .withType(clazz)
+                    .build()
+                    .parse();
+            addCheckMark();
+            List refList = new CsvToBeanBuilder(new InputStreamReader(refStream))
+                    .withType(clazz)
+                    .withIgnoreLeadingWhiteSpace(true)
+                    .build()
+                    .parse();
+            if (refList.size() == list.size()
+                    && list.containsAll(refList)) {
+                points+=maxPoints;
+                addCheckMark();
+                feedback("+");
+            } else {
+                feedback("Solution does not match reference solution.");
+            }
+        } catch (AssertionError | Exception e) {
+            feedback("During evaluation the following error occurred");
+            feedback(e.getLocalizedMessage());
+
+        }
     }
 }
