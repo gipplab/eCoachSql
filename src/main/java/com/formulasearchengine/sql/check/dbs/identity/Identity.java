@@ -24,6 +24,7 @@ public class Identity extends BaseChecker {
         feedback("check if 1a.txt file exists");
         if (!loadFileContents("a", ".txt"))
             return;
+        addCheckMark();
         points++;
         feedback("+");
         feedback("check that file contains your name");
@@ -34,11 +35,13 @@ public class Identity extends BaseChecker {
             feedback("1a.txt does not contain your " + e.getLocalizedMessage());
             return;
         }
+        addCheckMark();
         points++;
         feedback("+");
         feedback("check if 1b.txt file exists");
         if (!loadFileContents("b", ".txt"))
             return;
+        addCheckMark();
         points++;
         feedback("+");
         feedback("check that file contains your student id");
@@ -48,6 +51,7 @@ public class Identity extends BaseChecker {
             feedback("1b.txt does not contain your student id:" + e.getLocalizedMessage());
             return;
         }
+        addCheckMark();
         points++;
         feedback("+");
     }

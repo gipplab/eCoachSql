@@ -32,9 +32,13 @@ public abstract class BaseChecker {
 
     protected void feedback(String... log) {
         for (String s : log) {
-            output.append(s);
             output.append("\n");
+            output.append(s);
         }
+    }
+
+    protected void addCheckMark(){
+        output.append(" ✓");
     }
 
     public String getFormattedRuntime() {
