@@ -21,7 +21,7 @@ public abstract class SemiManualChecker extends BaseChecker {
     }
 
     public void filenameExists(String name, Double points) {
-        totalMaybePoints+=points;
+        totalMaybePoints += points;
         try {
             final List<Path> fileList = Files.walk(testFolder)
                     .filter(Files::isRegularFile)
@@ -29,8 +29,8 @@ public abstract class SemiManualChecker extends BaseChecker {
             for (Path path : fileList) {
                 if (path.getFileName().toString().startsWith(name)) {
                     feedback(path.getFileName() + " will be checked by a human for task " + name);
-                    feedback("You can gain up to "+ points +" points for this upload.");
-                    maybePoints+=points;
+                    feedback("You can gain up to " + points + " points for this upload.");
+                    maybePoints += points;
                     return;
                 }
             }
@@ -43,12 +43,16 @@ public abstract class SemiManualChecker extends BaseChecker {
     @Override
     public void writeOutput() {
         super.writeOutput();
-        feedback("You might obtain " + maybePoints + " of "+ totalMaybePoints + " additional points that will be granted by humans.");
+        feedback("You might obtain " + maybePoints + " of " + totalMaybePoints + " additional points that will be granted by humans.");
 
     }
 
+    public void compareWithResource(InputStream refStream, Double maxPoints, Class clazz) {
+        compareWithResource(refStream, maxPoints, clazz, false);
+    }
+
     @SuppressWarnings({"unchecked", "rawtypes"})
-    public void compareWithResource(InputStream refStream , Double maxPoints, Class clazz ){
+    public void compareWithResource(InputStream refStream, Double maxPoints, Class clazz, Boolean detailedFeedback) {
         try {
             feedback("check that the file is a valid csv file");
             List list = new CsvToBeanBuilder(new StringReader(currentFileContent))
@@ -64,11 +68,27 @@ public abstract class SemiManualChecker extends BaseChecker {
                     .parse();
             if (refList.size() == list.size()
                     && list.containsAll(refList)) {
-                points+=maxPoints;
+                points += maxPoints;
                 addCheckMark();
                 feedback("+");
             } else {
                 feedback("Solution does not match reference solution.");
+                if (detailedFeedback){
+                    feedback("Hints about differences to reference solution.");
+                    StringBuilder sb = new StringBuilder("");
+                    for (Object o : list) {
+                        sb.append("\n  ");
+                        sb.append("Element \"");
+                        sb.append(o.toString());
+                        sb.append("\" is " );
+                        if (refList.contains(o)){
+                            sb.append("NOT ");
+                        }
+                        sb.append("part of the reference solution.");
+                    }
+                    feedback(sb.toString());
+
+                }
             }
         } catch (AssertionError | Exception e) {
             feedback("During evaluation the following error occurred");
