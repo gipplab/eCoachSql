@@ -74,8 +74,7 @@ public abstract class SemiManualChecker extends BaseChecker {
             } else {
                 feedback("Solution does not match reference solution.");
                 if (detailedFeedback){
-                    feedback("Hints about differences to reference solution.");
-                    StringBuilder sb = new StringBuilder("");
+                    StringBuilder sb = new StringBuilder("Hints to differences with reference solution.");
                     for (Object o : list) {
                         sb.append("\n  ");
                         sb.append("Element \"");

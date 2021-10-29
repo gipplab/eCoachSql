@@ -60,6 +60,11 @@ public class SemiManualCheckerTest {
     }
 
     @Test
+    public void testDetailFeedback() {
+        assertThat(feedback, CoreMatchers.containsString("Hints to differences"));
+    }
+
+    @Test
     public void filenameExistsSuccess() {
         instance.filenameExists("fd.csv", 2.);
         assertThat(feedback, CoreMatchers.containsString("2.0 points for this upload"));
