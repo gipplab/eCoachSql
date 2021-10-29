@@ -1,5 +1,6 @@
 package com.formulasearchengine.sql.check.dbs;
 
+import com.formulasearchengine.sql.check.dbs.csv.KeyInfo;
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,8 +22,15 @@ public class SemiManualCheckerTest {
         instance = new SemiManualChecker() {
             @Override
             public void run() {
-                testFolder= getTestFolder("com.formulasearchengine.sql.check.good/hp04/1/");
-                currentFile = "1";
+                testFolder= getTestFolder("com.formulasearchengine.sql.check.good/csv");
+                currentFile = "";
+                loadFileContents("fd-test",".csv");
+                compareWithResource(
+                        SemiManualCheckerTest.class.getClassLoader()
+                                .getResourceAsStream("com.formulasearchengine.sql.check.good/csv/fd.csv"),
+                        2.,
+                        KeyInfo.class,
+                        true);
             }
 
             @Override
@@ -42,13 +50,18 @@ public class SemiManualCheckerTest {
                 return totalMaybePoints;
             }
 
+            @Override
+            public double getTotalPoints() {
+                return 5.;
+            }
+
         };
         instance.run();
     }
 
     @Test
     public void filenameExistsSuccess() {
-        instance.filenameExists("1a.sql",2.);
+        instance.filenameExists("fd.csv", 2.);
         assertThat(feedback, CoreMatchers.containsString("2.0 points for this upload"));
     }
 
@@ -60,7 +73,7 @@ public class SemiManualCheckerTest {
 
     @Test
     public void testWriteOutput() {
-        instance.filenameExists("1a.sql",2.);
+        instance.filenameExists("fd.csv",2.);
         instance.filenameExists("missing.sql",3.);
 
         instance.writeOutput();

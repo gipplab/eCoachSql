@@ -1,0 +1,4 @@
+table,candidateKey,columns
+mountain,false,Name	Height	Country
+mountain,true,name height
+mountain,false,height
