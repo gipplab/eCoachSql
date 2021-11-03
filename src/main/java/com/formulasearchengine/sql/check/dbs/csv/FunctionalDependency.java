@@ -20,4 +20,30 @@ public class FunctionalDependency{
         }
 
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder stringBuilder = new StringBuilder("{");
+        boolean comma = false;
+        for (Integer i : determinant) {
+            if (comma){
+                stringBuilder.append(", ");
+            }
+            stringBuilder.append("A_");
+            stringBuilder.append(i);
+            comma = true;
+        }
+        stringBuilder.append("} -> {");
+        comma = false;
+        for (Integer i : dependant) {
+            if (comma){
+                stringBuilder.append(", ");
+            }
+            stringBuilder.append("A_");
+            stringBuilder.append(i);
+            comma = true;
+        }
+        stringBuilder.append("}");
+        return stringBuilder.toString();
+    }
 }
