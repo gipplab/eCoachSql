@@ -22,7 +22,7 @@ public abstract class BaseChecker {
     private PrintStream orgStream;
     protected Solution solution;
     protected Path testFolder;
-    protected int points = 0;
+    protected double points = 0.;
     protected SortedMap<String, Function<BaseChecker, Boolean>> refs;
     protected String currentFile;
     protected String currentFileContent;
