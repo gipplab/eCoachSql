@@ -23,7 +23,7 @@ import static com.facebook.presto.sql.SqlFormatter.formatSql;
 import static com.formulasearchengine.sql.check.dbs.ReferenceQuery.getQuerySpecification;
 import static com.formulasearchengine.sql.check.dbs.ReferenceQuery.removeLimits;
 
-public class SqlChecker extends BaseChecker{
+public class SqlChecker extends BaseChecker {
     protected SortedMap<String, Query> refs;
 
     protected Connection con;
@@ -70,7 +70,7 @@ public class SqlChecker extends BaseChecker{
     public boolean checkSchema() {
         List<String> expectedCols = refs.get(currentFile).columns;
         if (colNames.size() != expectedCols.size()) {
-            feedback("- Expected " + expectedCols.size() + " columns but got " + colNames.size() +" columns.");
+            feedback("- Expected " + expectedCols.size() + " columns but got " + colNames.size() + " columns.");
             return false;
         }
         for (String c : expectedCols) {
@@ -115,7 +115,7 @@ public class SqlChecker extends BaseChecker{
             lastRuntime = System.nanoTime() - l;
             if (compareQueries != 0) {
                 feedback("- Student solution and reference solution differ!");
-                if (SHOW_DEBUG){
+                if (SHOW_DEBUG) {
                     feedback("First row of student result set " + getFirstRow(currentFileContent));
                     feedback("First row of reference result set " + getFirstRow(referenceQuery));
                 }
@@ -228,7 +228,7 @@ public class SqlChecker extends BaseChecker{
     }
 
     public boolean loadFileContents(String suffix) {
-        return loadFileContents(suffix,".sql");
+        return loadFileContents(suffix, ".sql");
     }
 
     protected void printException(Exception e) {
@@ -242,17 +242,13 @@ public class SqlChecker extends BaseChecker{
             if (hasError(test)) {
                 continue;
             }
-            points++;
-            feedback("+");
+            addCheckMark();
+            points += getMaxPoints(test);
         }
-        feedback("\n======== Test Report ======");
-        if (points < refs.size()) {
-            feedback("FAILURES!!! Some tests have errors. Correct them to achieve the maximum grade.");
-        } else {
-            feedback("No tests have errors.");
-        }
-        feedback("POINTS: " + getPoints() + "/" + getTotalPoints());
-        feedback("===========================\n");
+    }
+
+    public double getMaxPoints(String test) {
+        return 1.0;
     }
 
     public boolean runQuery() {
