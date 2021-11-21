@@ -2,6 +2,7 @@ package com.formulasearchengine.sql.check.dbs.csv;
 
 import com.opencsv.bean.CsvBindAndSplitByPosition;
 
+import java.util.Objects;
 import java.util.SortedSet;
 
 public class KeySet {
@@ -17,5 +18,10 @@ public class KeySet {
             return super.equals(obj);
         }
 
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(elements);
     }
 }

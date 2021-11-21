@@ -2,6 +2,7 @@ package com.formulasearchengine.sql.check.dbs.csv;
 
 import com.opencsv.bean.CsvBindAndSplitByName;
 
+import java.util.Objects;
 import java.util.SortedSet;
 
 @SuppressWarnings({"unused", "MismatchedQueryAndUpdateOfCollection"})
@@ -20,6 +21,11 @@ public class FunctionalDependency{
             return super.equals(obj);
         }
 
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(determinant, dependant);
     }
 
     @Override

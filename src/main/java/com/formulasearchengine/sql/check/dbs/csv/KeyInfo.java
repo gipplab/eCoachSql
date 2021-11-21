@@ -3,6 +3,7 @@ package com.formulasearchengine.sql.check.dbs.csv;
 import com.opencsv.bean.CsvBindAndSplitByName;
 import com.opencsv.bean.CsvBindByName;
 
+import java.util.Objects;
 import java.util.SortedSet;
 
 @SuppressWarnings("unused")
@@ -24,6 +25,10 @@ public class KeyInfo {
     @CsvBindAndSplitByName(elementType = Fields.class, converter = LowerConverter.class, required = true)
     private SortedSet<Fields> columns;
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(table, candidateKey, columns);
+    }
 
     @Override
     public boolean equals(Object obj) {
