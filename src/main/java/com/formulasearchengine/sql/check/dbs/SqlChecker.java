@@ -35,7 +35,7 @@ public class SqlChecker extends BaseChecker{
         final int jdbcRowCount = getJDBCRowCount();
         final Integer expRowCount = refs.get(currentFile).rowCount;
         if (jdbcRowCount != expRowCount) {
-            System.out.println("- Expected result with " + expRowCount + "rows but got " + jdbcRowCount + "rows.");
+            feedback("- Expected result with " + expRowCount + "rows but got " + jdbcRowCount + "rows.");
             return false;
         }
         return true;
@@ -57,7 +57,7 @@ public class SqlChecker extends BaseChecker{
                 final Double lastVal = last.get(key);
                 final int comp = v.compareTo(lastVal);
                 if (comp != 0 && comp != value) {
-                    System.out.println("- Order check failed. Comparison of '" + v + "' to '" + lastVal +
+                    feedback("- Order check failed. Comparison of '" + v + "' to '" + lastVal +
                             "' resulted in " + comp + " but " + value + " was expected.");
                     return false;
                 }
@@ -70,18 +70,18 @@ public class SqlChecker extends BaseChecker{
     public boolean checkSchema() {
         List<String> expectedCols = refs.get(currentFile).columns;
         if (colNames.size() != expectedCols.size()) {
-            System.out.println("- Expected " + expectedCols.size() + " columns but got " + colNames.size() +" columns.");
+            feedback("- Expected " + expectedCols.size() + " columns but got " + colNames.size() +" columns.");
             return false;
         }
         for (String c : expectedCols) {
             if (!colNames.contains(c)) {
-                System.out.println("- Column " + c + " missing in result schema. Maybe a spelling mistake?");
+                feedback("- Column " + c + " missing in result schema. Maybe a spelling mistake?");
                 return false;
             }
             final int realIndex = colNames.indexOf(c);
             final int expectedIndex = expectedCols.indexOf(c);
             if (realIndex != expectedIndex) {
-                System.out.println(
+                feedback(
                         "- Column " + c + " is expected be at position " + expectedIndex + " but was as " + realIndex);
                 return false;
             }
@@ -114,16 +114,16 @@ public class SqlChecker extends BaseChecker{
             }
             lastRuntime = System.nanoTime() - l;
             if (compareQueries != 0) {
-                System.out.println("- Student solution and reference solution differ!");
+                feedback("- Student solution and reference solution differ!");
                 if (SHOW_DEBUG){
-                    System.out.println("First row of student result set " + getFirstRow(currentFileContent));
-                    System.out.println("First row of reference result set " + getFirstRow(referenceQuery));
+                    feedback("First row of student result set " + getFirstRow(currentFileContent));
+                    feedback("First row of reference result set " + getFirstRow(referenceQuery));
                 }
                 return false;
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("- - - Internal error. Contact DB admin. Attach stack trace above.");
+            feedback("- - - Internal error. Contact DB admin. Attach stack trace above.");
             return false;
         }
 
@@ -232,27 +232,27 @@ public class SqlChecker extends BaseChecker{
     }
 
     protected void printException(Exception e) {
-        System.out.println(e.getMessage());
+        feedback(e.getMessage());
     }
 
     public void run() {
-        System.out.println("\n\n======= Test Details ======");
+        feedback("\n\n======= Test Details ======");
         for (String test : refs.keySet()) {
-            System.out.println("\nEXERCISE \"" + test + "\"");
+            feedback("\nEXERCISE \"" + test + "\"");
             if (hasError(test)) {
                 continue;
             }
             points++;
-            System.out.println("+");
+            feedback("+");
         }
-        System.out.println("\n======== Test Report ======");
+        feedback("\n======== Test Report ======");
         if (points < refs.size()) {
-            System.out.println("FAILURES!!! Some tests have errors. Correct them to achieve the maximum grade.");
+            feedback("FAILURES!!! Some tests have errors. Correct them to achieve the maximum grade.");
         } else {
-            System.out.println("No tests have errors.");
+            feedback("No tests have errors.");
         }
-        System.out.println("POINTS: " + getPoints() + "/" + getTotalPoints());
-        System.out.println("===========================\n");
+        feedback("POINTS: " + getPoints() + "/" + getTotalPoints());
+        feedback("===========================\n");
     }
 
     public boolean runQuery() {
