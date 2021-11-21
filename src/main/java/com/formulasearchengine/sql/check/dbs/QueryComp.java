@@ -67,9 +67,9 @@ public class QueryComp {
         return actualHash;
     }
 
-    private static int computeOrderAwareResultSetHash(ResultSet result) throws SQLException {
+    public static int computeOrderAwareResultSetHash(ResultSet result) throws SQLException {
 
-        int hash = 0;
+        int hash;
         int rowCnt = 0;
 
         result.first();
