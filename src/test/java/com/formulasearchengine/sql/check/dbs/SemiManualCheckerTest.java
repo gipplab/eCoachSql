@@ -2,15 +2,18 @@ package com.formulasearchengine.sql.check.dbs;
 
 import com.formulasearchengine.sql.check.dbs.csv.KeyInfo;
 import org.hamcrest.CoreMatchers;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
+import java.io.FileDescriptor;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static org.junit.Assert.*;
+
 
 public class SemiManualCheckerTest {
 
@@ -94,5 +97,10 @@ public class SemiManualCheckerTest {
             fail();
         }
         return Paths.get(testfolder);
+    }
+
+    @After
+    public void cleanup(){
+        System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
     }
 }
