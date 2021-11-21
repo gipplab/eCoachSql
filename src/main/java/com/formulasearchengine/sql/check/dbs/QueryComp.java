@@ -114,7 +114,7 @@ public class QueryComp {
     }
 
     public static Connection getConnection() throws SQLException {
-        return getConnection("corp");
+        return getConnection("public");
     }
 
     public static Connection getConnection(String schema) throws SQLException {

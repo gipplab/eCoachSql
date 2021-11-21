@@ -15,7 +15,7 @@ public class Seq1 extends SqlChecker {
 
 
     public Seq1(Path folder) throws SQLException {
-        con = QueryComp.getConnection("exampleDatabase");
+        con = QueryComp.getConnection("public");
         testFolder = folder;
         final String[] EXPECTED_FILES = {"1", "2", "3"};
         refs = new TreeMap<>();
