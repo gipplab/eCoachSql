@@ -71,7 +71,6 @@ public class SqlFormatterTest {
         final Node root = query.getChildren().get(0);
         final Query noLimitQuery;
         if (query.getLocation().isPresent()) {
-            //noinspection OptionalGetWithoutIsPresent
             noLimitQuery = new Query(query.getLocation().get(), query.getWith(), query.getQueryBody(), query.getOrderBy(),query.getOffset(), Optional.empty());
         } else {
             noLimitQuery = new Query(query.getWith(), query.getQueryBody(), query.getOrderBy(), query.getOffset(), Optional.empty());

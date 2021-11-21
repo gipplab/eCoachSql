@@ -21,7 +21,6 @@ public class Solution {
      * // 4: str(env.user().last_name),
      * // 5: str(env.solution().id)]
      *
-     * @param args
      */
     public Solution(String[] args) {
 

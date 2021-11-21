@@ -78,7 +78,7 @@ public class ReferenceQuery {
                     e.printStackTrace();
                 }
             } else {
-                System.out.println("Ignoring " + f.getFileName().toString());
+                System.out.println("Ignoring " + f.getFileName());
             }
         });
     }

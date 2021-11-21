@@ -4,6 +4,7 @@ import com.opencsv.bean.CsvBindAndSplitByName;
 
 import java.util.SortedSet;
 
+@SuppressWarnings({"unused", "MismatchedQueryAndUpdateOfCollection"})
 public class FunctionalDependency{
     @CsvBindAndSplitByName(required = true, elementType = Integer.class)
     private SortedSet<Integer> determinant;

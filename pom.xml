@@ -4,7 +4,7 @@
 
     <groupId>com.formulasearchengine</groupId>
     <artifactId>dbs-sql-check</artifactId>
-    <version>1.4.0-SNAPSHOT</version>
+    <version>1.4.0</version>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
                 <dependency>
@@ -48,6 +48,7 @@
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
+            <!--suppress MavenPackageUpdate -->
             <version>2.11.0</version>
         </dependency>
         <dependency>
@@ -58,11 +59,11 @@
     </dependencies>
     <name>DBS SQL check</name>
     <description>Checking of student solutions for SQL queries</description>
-    <url>http://www.formulasearchengine.com</url>
+    <url>https://www.formulasearchengine.com</url>
     <licenses>
         <license>
             <name>The Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
     <developers>

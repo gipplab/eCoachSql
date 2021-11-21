@@ -6,7 +6,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -21,7 +20,6 @@ import java.lang.Math;
 public abstract class BaseChecker {
     static final boolean SHOW_DEBUG = true;
     private PrintStream orgStream;
-    private PrintStream myPrintStream;
     protected Solution solution;
     protected Path testFolder;
     protected int points = 0;
@@ -144,7 +142,7 @@ public abstract class BaseChecker {
     }
 
     private void flushLog() {
-        System.out.println(output.toString());
+        System.out.println(output);
     }
 
     abstract public void run();
@@ -152,6 +150,7 @@ public abstract class BaseChecker {
     private void redirectStdOut() {
         orgStream = System.out;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream myPrintStream;
         try {
             myPrintStream = new PrintStream(baos, true, "UTF-8");
         } catch (UnsupportedEncodingException e) {

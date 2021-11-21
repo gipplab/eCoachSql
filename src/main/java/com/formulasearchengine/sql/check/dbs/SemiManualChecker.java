@@ -47,7 +47,7 @@ public abstract class SemiManualChecker extends BaseChecker {
 
     }
 
-    public void compareWithResource(InputStream refStream, Double maxPoints, Class clazz) {
+    public void compareWithResource(InputStream refStream, Double maxPoints, @SuppressWarnings("rawtypes") Class clazz) {
         compareWithResource(refStream, maxPoints, clazz, false);
     }
 

@@ -3,7 +3,6 @@ package com.formulasearchengine.sql.check.pcstore;
 import com.formulasearchengine.sql.check.dbs.ReferenceQuery;
 import com.formulasearchengine.sql.check.dbs.pcstore.Seq1;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import static org.junit.Assert.fail;
 

@@ -61,8 +61,6 @@ public class QueryComp {
         if (sorted) {
             actualHash = computeOrderAwareResultSetHash(actual);
         } else {
-            // its not entirely clear to me hwo good the has code ist. At least in the current list of test cases
-            // there are no hash collisions.
             actualHash = computeOrderTolerantResultHashes(actual).hashCode();
         }
         actual.close();
@@ -78,6 +76,7 @@ public class QueryComp {
         hash = computeRowHash(result) | rowCnt++;
 
         while (result.next()) {
+            //noinspection NumericOverflow
             hash ^= (1315423911 ^ ((1315423911 << 5) + (computeRowHash(result) | rowCnt++) + (1315423911 >> 2)));
         }
 
@@ -102,10 +101,12 @@ public class QueryComp {
         for (int i = 1; i <= result.getMetaData().getColumnCount(); i++) {
             if ("java.sql.Array".equals(result.getMetaData().getColumnClassName(i))) {
                 final ResultSet resultSet = result.getArray(i).getResultSet();
+                //noinspection NumericOverflow
                 hash ^= (1315423911 ^ ((1315423911 << 5) + computeOrderAwareResultSetHash(resultSet)+ (1315423911 >> 2)));
             } else {
                 final Object o = result.getObject(i);
                 if (o != null) { // ignore null values
+                    //noinspection NumericOverflow
                     hash ^= (1315423911 ^ ((1315423911 << 5) + o.hashCode() + (1315423911 >> 2)));
                 }
             }
