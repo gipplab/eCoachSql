@@ -141,27 +141,31 @@ public class ReferenceQuery {
     }
 
     static QuerySpecification removeLimits(QuerySpecification q) {
-        if (q.getLocation().isPresent()) {
-            //noinspection OptionalGetWithoutIsPresent
+        if (q.getLimit().isPresent()){
+            if (q.getLocation().isPresent()) {
+                return new QuerySpecification(
+                        q.getLocation().get(),
+                        q.getSelect(),
+                        q.getFrom(),
+                        q.getWhere(),
+                        q.getGroupBy(),
+                        q.getHaving(),
+                        q.getOrderBy(),
+                        q.getOffset(),
+                        Optional.empty());
+            }
             return new QuerySpecification(
-                    q.getLocation().get(),
                     q.getSelect(),
                     q.getFrom(),
                     q.getWhere(),
                     q.getGroupBy(),
                     q.getHaving(),
                     q.getOrderBy(),
-                    Optional.empty());
-        } else {
-            return new QuerySpecification(
-                    q.getSelect(),
-                    q.getFrom(),
-                    q.getWhere(),
-                    q.getGroupBy(),
-                    q.getHaving(),
-                    q.getOrderBy(),
-                    Optional.empty());
+                    q.getOffset(),
+                    Optional.empty()
+            );
         }
+        return q;
     }
 
     private void setQuery(Path folder, String filename) throws IOException {

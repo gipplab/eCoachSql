@@ -25,8 +25,8 @@ public class SqlFormatterTest {
         final QuerySpecification root = (QuerySpecification) query.getChildren().get(0);
         final Query noLimitQuery;
         assertEquals("SELECT\n"
-                + "  \"a\"\n"
-                + ", \"b\"\n"
+                + "  a\n"
+                + ", b\n"
                 + "FROM\n"
                 + "  \"T\"\n"
                 + "LIMIT 10\n", SqlFormatter.formatSql(root, Optional.empty()));
@@ -40,14 +40,25 @@ public class SqlFormatterTest {
                     root.getGroupBy(),
                     root.getHaving(),
                     root.getOrderBy(),
+                    root.getOffset(),
                     Optional.empty());
-            noLimitQuery = new Query(query.getLocation().get(), query.getWith(), noLimitSepc, query.getOrderBy(), Optional.empty());
+            noLimitQuery = new Query(
+                    query.getLocation().get(),
+                    query.getWith(),
+                    noLimitSepc,
+                    query.getOrderBy(),
+                    query.getOffset(),
+                    Optional.empty());
         } else {
-            noLimitQuery = new Query(query.getWith(), query.getQueryBody(), query.getOrderBy(), Optional.empty());
+            noLimitQuery = new Query(query.getWith(),
+                    query.getQueryBody(),
+                    query.getOrderBy(),
+                    query.getOffset(),
+                    Optional.empty());
         }
         assertEquals("SELECT\n"
-                + "  \"a\"\n"
-                + ", \"b\"\n"
+                + "  a\n"
+                + ", b\n"
                 + "FROM\n"
                 + "  \"T\"\n", SqlFormatter.formatSql(noLimitQuery, Optional.empty()));
     }
@@ -61,9 +72,9 @@ public class SqlFormatterTest {
         final Query noLimitQuery;
         if (query.getLocation().isPresent()) {
             //noinspection OptionalGetWithoutIsPresent
-            noLimitQuery = new Query(query.getLocation().get(), query.getWith(), query.getQueryBody(), query.getOrderBy(), Optional.empty());
+            noLimitQuery = new Query(query.getLocation().get(), query.getWith(), query.getQueryBody(), query.getOrderBy(),query.getOffset(), Optional.empty());
         } else {
-            noLimitQuery = new Query(query.getWith(), query.getQueryBody(), query.getOrderBy(), Optional.empty());
+            noLimitQuery = new Query(query.getWith(), query.getQueryBody(), query.getOrderBy(), query.getOffset(), Optional.empty());
         }
         assertEquals("SELECT\n"
                 + "  \"a\"\n"

@@ -34,15 +34,15 @@ public class ReferenceQueryTest {
         Query query = (Query) parser.createStatement(TESTQUERY);
         final QuerySpecification root = (QuerySpecification) query.getChildren().get(0);
         assertEquals("SELECT\n"
-                + "  \"a\"\n"
-                + ", \"b\"\n"
+                + "  a\n"
+                + ", b\n"
                 + "FROM\n"
                 + "  \"T\"\n"
                 + "LIMIT 10\n", SqlFormatter.formatSql(root, Optional.empty()));
         final QuerySpecification noLimitQuery = ReferenceQuery.removeLimits(root);
         assertEquals("SELECT\n"
-                + "  \"a\"\n"
-                + ", \"b\"\n"
+                + "  a\n"
+                + ", b\n"
                 + "FROM\n"
                 + "  \"T\"\n", SqlFormatter.formatSql(noLimitQuery, Optional.empty()));
     }
