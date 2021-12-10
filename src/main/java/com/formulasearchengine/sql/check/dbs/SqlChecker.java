@@ -53,9 +53,9 @@ public class SqlChecker extends BaseChecker {
             for (Map.Entry<String, Integer> entry : orders.entrySet()) {
                 final String key = entry.getKey();
                 final Integer value = entry.getValue();
-                @SuppressWarnings("lgtm[1813633265]") final Double v = getColAsDouble(key);
+                final double v = getColAsDouble(key);
                 final Double lastVal = last.get(key);
-                final int comp = v.compareTo(lastVal);
+                final int comp = lastVal.compareTo(v);
                 if (comp != 0 && comp != value) {
                     feedback("- Order check failed. Comparison of '" + v + "' to '" + lastVal +
                             "' resulted in " + comp + " but " + value + " was expected.");
