@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -151,11 +152,7 @@ public abstract class BaseChecker {
         orgStream = System.out;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream myPrintStream;
-        try {
-            myPrintStream = new PrintStream(baos, true, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            myPrintStream = new PrintStream(baos);
-        }
+        myPrintStream = new PrintStream(baos, true, StandardCharsets.UTF_8);
         System.setOut(myPrintStream);
     }
 }
