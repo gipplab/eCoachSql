@@ -53,8 +53,7 @@ public class SqlChecker extends BaseChecker {
             for (Map.Entry<String, Integer> entry : orders.entrySet()) {
                 final String key = entry.getKey();
                 final Integer value = entry.getValue();
-                @SuppressWarnings("lgtm[1813633265]")
-                final Double v = getColAsDouble(key);
+                @SuppressWarnings("lgtm[1813633265]") final Double v = getColAsDouble(key);
                 final Double lastVal = last.get(key);
                 final int comp = v.compareTo(lastVal);
                 if (comp != 0 && comp != value) {
@@ -102,10 +101,10 @@ public class SqlChecker extends BaseChecker {
     }
 
     protected boolean compareReference(boolean order) {
+        final int compareQueries;
+        final String referenceQuery = refs.get(currentFile).stmt;
         try {
-            final int compareQueries;
             final long l = System.nanoTime();
-            final String referenceQuery = refs.get(currentFile).stmt;
             if (refs.get(currentFile).limits) {
                 final QuerySpecification querySpecification = getQuerySpecification(referenceQuery);
                 final String noLimitSql = formatSql(removeLimits(querySpecification), Optional.empty());
@@ -114,31 +113,47 @@ public class SqlChecker extends BaseChecker {
                 compareQueries = QueryComp.compareQueries(order, getStatement(), currentFileContent, referenceQuery);
             }
             lastRuntime = System.nanoTime() - l;
-            if (compareQueries != 0) {
-                feedback("- Student solution and reference solution differ!");
-                if (SHOW_DEBUG) {
-                    feedback("First row of student result set " + getFirstRow(currentFileContent));
-                    feedback("First row of reference result set " + getFirstRow(referenceQuery));
-                }
-                return false;
-            }
         } catch (SQLException e) {
             e.printStackTrace();
             feedback("- - - Internal error. Contact DB admin. Attach stack trace above.");
+            return false;
+        }
+        if (compareQueries != 0) {
+            feedback("- Student solution and reference solution differ!");
+            if (SHOW_DEBUG) {
+                try {
+                    printDiff(currentFileContent, referenceQuery);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    feedback("- - - Internal error. Contact DB admin. Can not print diff between student and reference solution.");
+                }
+            }
             return false;
         }
 
         return true;
     }
 
-    private String getFirstRow(String q) throws SQLException {
+    private void printDiff(String actual, String expected) throws SQLException {
         final Statement statement = getStatement();
-        statement.execute(q);
+        statement.execute(actual);
         final ResultSet resultSet = statement.getResultSet();
-        resultSet.next();
+        statement.execute(expected);
+        final ResultSet referenceSet = statement.getResultSet();
         RowProcessor rp = new BasicRowProcessor();
-        Map<String, Object> m = rp.toMap(resultSet);
-        return m.toString();
+        Map<String, Object> actualRow;
+        Map<String, Object> expectedRow;
+        int pos = 0;
+        do {
+            pos++;
+            resultSet.next();
+            referenceSet.next();
+            actualRow = rp.toMap(resultSet);
+            expectedRow = rp.toMap(referenceSet);
+        } while (!actualRow.equals(expectedRow));
+        feedback("Difference found at position " + pos,
+                "expected ", expectedRow.toString(),
+                "but was ", actualRow.toString());
     }
 
     private double getColAsDouble(String col) throws SQLException {
