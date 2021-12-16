@@ -55,7 +55,7 @@ public abstract class SemiManualChecker extends BaseChecker {
     public void compareWithResource(InputStream refStream, Double maxPoints, Class clazz, Boolean detailedFeedback) {
         try {
             feedback("check that the file is a valid csv file");
-            List list = new CsvToBeanBuilder(new StringReader(currentFileContent))
+            List list = new CsvToBeanBuilder(new StringReader(currentFileContent.replace("\uFEFF", "")))
                     .withIgnoreLeadingWhiteSpace(true)
                     .withType(clazz)
                     .build()
