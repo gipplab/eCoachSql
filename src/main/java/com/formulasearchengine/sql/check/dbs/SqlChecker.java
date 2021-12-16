@@ -14,9 +14,11 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.SortedMap;
 
 import static com.facebook.presto.sql.SqlFormatter.formatSql;
@@ -135,25 +137,30 @@ public class SqlChecker extends BaseChecker {
     }
 
     private void printDiff(String actual, String expected) throws SQLException {
-        final Statement statement = getStatement();
+        final Set<Map<String, Object>> actualRows = new HashSet<>();
+        final Set<Map<String, Object>> expectedRows = new HashSet<>();
+
+        Statement statement = getStatement();
         statement.execute(actual);
         final ResultSet resultSet = statement.getResultSet();
+        statement = getStatement();
         statement.execute(expected);
         final ResultSet referenceSet = statement.getResultSet();
         RowProcessor rp = new BasicRowProcessor();
-        Map<String, Object> actualRow;
-        Map<String, Object> expectedRow;
-        int pos = 0;
-        do {
-            pos++;
-            resultSet.next();
-            referenceSet.next();
-            actualRow = rp.toMap(resultSet);
-            expectedRow = rp.toMap(referenceSet);
-        } while (!actualRow.equals(expectedRow));
-        feedback("Difference found at position " + pos,
-                "expected ", expectedRow.toString(),
-                "but was ", actualRow.toString());
+
+        while (resultSet.next() && referenceSet.next()) {
+            actualRows.add(rp.toMap(resultSet));
+            expectedRows.add(rp.toMap(referenceSet));
+        }
+        final Set<Map<String, Object>> superfluousRows = new HashSet<>(actualRows);
+        superfluousRows.removeAll(expectedRows);
+        expectedRows.removeAll(actualRows);
+        feedback("Reference and result sets don't match.",
+                "  The following rows are missing from the actual result: ",
+                expectedRows.toString(),
+                "  The following rows are superfluous:",
+                superfluousRows.toString()
+        );
     }
 
     private double getColAsDouble(String col) throws SQLException {
