@@ -83,7 +83,7 @@ public class QueryComp {
         return hash;
     }
 
-    private static Set<Integer> computeOrderTolerantResultHashes(ResultSet result) throws SQLException {
+    public static Set<Integer> computeOrderTolerantResultHashes(ResultSet result) throws SQLException {
         HashSet<Integer> results = new HashSet<>();
         result.first();
         results.add(computeRowHash(result));
